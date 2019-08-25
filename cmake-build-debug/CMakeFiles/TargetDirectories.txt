@@ -1,0 +1,3 @@
+C:/Users/aybso/CLionProjects/PHOTGEN++/cmake-build-debug/CMakeFiles/MatrizOrtogonal.dir
+C:/Users/aybso/CLionProjects/PHOTGEN++/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/aybso/CLionProjects/PHOTGEN++/cmake-build-debug/CMakeFiles/rebuild_cache.dir

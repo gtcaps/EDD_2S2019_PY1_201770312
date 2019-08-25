@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/aybso/CLionProjects/PHOTGEN++/MatrizOrtogonal.cpp
+MatrizOrtogonal.h
+C:/Users/aybso/CLionProjects/PHOTGEN++/MatrizOrtogonal.h
+
+C:/Users/aybso/CLionProjects/PHOTGEN++/MatrizOrtogonal.h
+iostream
+-
+NodoOrtogonal.h
+C:/Users/aybso/CLionProjects/PHOTGEN++/NodoOrtogonal.h
+
+C:/Users/aybso/CLionProjects/PHOTGEN++/NodoOrtogonal.cpp
+NodoOrtogonal.h
+C:/Users/aybso/CLionProjects/PHOTGEN++/NodoOrtogonal.h
+
+C:/Users/aybso/CLionProjects/PHOTGEN++/NodoOrtogonal.h
+string
+-
+
+C:/Users/aybso/CLionProjects/PHOTGEN++/main.cpp
+iostream
+-
+MatrizOrtogonal.h
+C:/Users/aybso/CLionProjects/PHOTGEN++/MatrizOrtogonal.h
+
