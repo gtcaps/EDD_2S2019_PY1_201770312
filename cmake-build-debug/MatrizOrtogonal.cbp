@@ -82,6 +82,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/aybso/CLionProjects/PHOTGEN++/CuboOrtogonal.cpp">
+			<Option target="MatrizOrtogonal"/>
+		</Unit>
+		<Unit filename="C:/Users/aybso/CLionProjects/PHOTGEN++/CuboOrtogonal.h">
+			<Option target="MatrizOrtogonal"/>
+		</Unit>
 		<Unit filename="C:/Users/aybso/CLionProjects/PHOTGEN++/MatrizOrtogonal.cpp">
 			<Option target="MatrizOrtogonal"/>
 		</Unit>
@@ -92,6 +98,12 @@
 			<Option target="MatrizOrtogonal"/>
 		</Unit>
 		<Unit filename="C:/Users/aybso/CLionProjects/PHOTGEN++/NodoOrtogonal.h">
+			<Option target="MatrizOrtogonal"/>
+		</Unit>
+		<Unit filename="C:/Users/aybso/CLionProjects/PHOTGEN++/NodoZ.cpp">
+			<Option target="MatrizOrtogonal"/>
+		</Unit>
+		<Unit filename="C:/Users/aybso/CLionProjects/PHOTGEN++/NodoZ.h">
 			<Option target="MatrizOrtogonal"/>
 		</Unit>
 		<Unit filename="C:/Users/aybso/CLionProjects/PHOTGEN++/main.cpp">

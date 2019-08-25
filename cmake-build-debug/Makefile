@@ -122,6 +122,33 @@ MatrizOrtogonal/fast:
 	$(MAKE) -f CMakeFiles\MatrizOrtogonal.dir\build.make CMakeFiles/MatrizOrtogonal.dir/build
 .PHONY : MatrizOrtogonal/fast
 
+CuboOrtogonal.obj: CuboOrtogonal.cpp.obj
+
+.PHONY : CuboOrtogonal.obj
+
+# target to build an object file
+CuboOrtogonal.cpp.obj:
+	$(MAKE) -f CMakeFiles\MatrizOrtogonal.dir\build.make CMakeFiles/MatrizOrtogonal.dir/CuboOrtogonal.cpp.obj
+.PHONY : CuboOrtogonal.cpp.obj
+
+CuboOrtogonal.i: CuboOrtogonal.cpp.i
+
+.PHONY : CuboOrtogonal.i
+
+# target to preprocess a source file
+CuboOrtogonal.cpp.i:
+	$(MAKE) -f CMakeFiles\MatrizOrtogonal.dir\build.make CMakeFiles/MatrizOrtogonal.dir/CuboOrtogonal.cpp.i
+.PHONY : CuboOrtogonal.cpp.i
+
+CuboOrtogonal.s: CuboOrtogonal.cpp.s
+
+.PHONY : CuboOrtogonal.s
+
+# target to generate assembly for a file
+CuboOrtogonal.cpp.s:
+	$(MAKE) -f CMakeFiles\MatrizOrtogonal.dir\build.make CMakeFiles/MatrizOrtogonal.dir/CuboOrtogonal.cpp.s
+.PHONY : CuboOrtogonal.cpp.s
+
 MatrizOrtogonal.obj: MatrizOrtogonal.cpp.obj
 
 .PHONY : MatrizOrtogonal.obj
@@ -176,6 +203,33 @@ NodoOrtogonal.cpp.s:
 	$(MAKE) -f CMakeFiles\MatrizOrtogonal.dir\build.make CMakeFiles/MatrizOrtogonal.dir/NodoOrtogonal.cpp.s
 .PHONY : NodoOrtogonal.cpp.s
 
+NodoZ.obj: NodoZ.cpp.obj
+
+.PHONY : NodoZ.obj
+
+# target to build an object file
+NodoZ.cpp.obj:
+	$(MAKE) -f CMakeFiles\MatrizOrtogonal.dir\build.make CMakeFiles/MatrizOrtogonal.dir/NodoZ.cpp.obj
+.PHONY : NodoZ.cpp.obj
+
+NodoZ.i: NodoZ.cpp.i
+
+.PHONY : NodoZ.i
+
+# target to preprocess a source file
+NodoZ.cpp.i:
+	$(MAKE) -f CMakeFiles\MatrizOrtogonal.dir\build.make CMakeFiles/MatrizOrtogonal.dir/NodoZ.cpp.i
+.PHONY : NodoZ.cpp.i
+
+NodoZ.s: NodoZ.cpp.s
+
+.PHONY : NodoZ.s
+
+# target to generate assembly for a file
+NodoZ.cpp.s:
+	$(MAKE) -f CMakeFiles\MatrizOrtogonal.dir\build.make CMakeFiles/MatrizOrtogonal.dir/NodoZ.cpp.s
+.PHONY : NodoZ.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -212,12 +266,18 @@ help:
 	@echo ... MatrizOrtogonal
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... CuboOrtogonal.obj
+	@echo ... CuboOrtogonal.i
+	@echo ... CuboOrtogonal.s
 	@echo ... MatrizOrtogonal.obj
 	@echo ... MatrizOrtogonal.i
 	@echo ... MatrizOrtogonal.s
 	@echo ... NodoOrtogonal.obj
 	@echo ... NodoOrtogonal.i
 	@echo ... NodoOrtogonal.s
+	@echo ... NodoZ.obj
+	@echo ... NodoZ.i
+	@echo ... NodoZ.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

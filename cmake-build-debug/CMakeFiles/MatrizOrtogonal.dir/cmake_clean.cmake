@@ -2,6 +2,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/MatrizOrtogonal.dir/main.cpp.obj"
   "CMakeFiles/MatrizOrtogonal.dir/NodoOrtogonal.cpp.obj"
   "CMakeFiles/MatrizOrtogonal.dir/MatrizOrtogonal.cpp.obj"
+  "CMakeFiles/MatrizOrtogonal.dir/NodoZ.cpp.obj"
+  "CMakeFiles/MatrizOrtogonal.dir/CuboOrtogonal.cpp.obj"
   "MatrizOrtogonal.pdb"
   "MatrizOrtogonal.exe"
   "MatrizOrtogonal.exe.manifest"
