@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include "NodoOrtogonal.h"
+#include <fstream>
 
 using namespace std;
 
@@ -34,6 +35,7 @@ class MatrizOrtogonal {
         void insertar(string valor, int x, int y);
         
         void imprimir();
+        void graficar();
         
         
 };

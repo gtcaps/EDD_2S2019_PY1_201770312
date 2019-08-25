@@ -89,10 +89,13 @@ void CuboOrtogonal::imprimir() {
         while(aux != NULL){
             cout << "Z = " << aux->getZ() << " ------> " << endl ;
             aux->getMatriz()->imprimir();
+            aux->getMatriz()->graficar();
             cout << endl << endl << endl;
             aux = aux->getSiguiente();
         }
     }
+    
+    
     
 }
 

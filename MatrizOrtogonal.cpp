@@ -277,3 +277,111 @@ void MatrizOrtogonal::insertar(string valor, int x, int y) {
     
     
 }
+
+void MatrizOrtogonal::graficar() {
+    ofstream archivo;
+    archivo.open("cubo.txt");
+    archivo << "digraph SparseMatrix{" << endl;
+    archivo << "    node[shape=record];" << endl;
+    archivo << "    graph[pencolor=transparent];" << endl;
+    archivo << "    node[style=filled];" << endl;
+    archivo << "    rankdir=LR;" << endl << endl;
+    
+    archivo << "    raiz[label=\"{Raiz}\" pos=\"0,0!\"];" << endl;
+    
+    //IMPRIMIENDO LAS CABECERAS DE X --------------------------------------
+    NodoOrtogonal* cabeceraX = cabezaX;
+    archivo << "    raiz -> x" << cabeceraX->getX() << "[dir=\"both\"]"<< endl;
+    while(cabeceraX != NULL){
+        archivo << "    ";
+        archivo << "x"<< cabeceraX->getX() <<"[label=\"{ 0 , "<< cabeceraX->getX() <<"}\"";
+        archivo << "pos=\""<< (cabeceraX->getX() * 2) <<",0!\"];" << endl;
+        
+        if(cabeceraX->getDerecha() != NULL){
+            archivo << "    ";
+            archivo << "x" << cabeceraX->getX() << "->" << "x" << cabeceraX->getDerecha()->getX() << "[dir=\"both\"]"<<  endl;
+        }
+        
+        cabeceraX = cabeceraX->getDerecha();
+    }
+    //FIN DE LAS CABECERAS DE X -----------------------------------------------
+    
+    archivo << endl << endl;
+    
+    //IMPRIMIENDO LAS CABECERAS DE Y -----------------------------------------
+    NodoOrtogonal* cabeceraY = cabezaY;
+    archivo << "    raiz -> y" << cabeceraY->getY() << "[dir=\"both\"];"<< endl;
+    
+    while(cabeceraY != NULL){
+        archivo << "    ";
+        archivo << "y"<< cabeceraY->getY() <<"[label=\"{ 0, " << cabeceraY->getY() <<"}\"";
+        archivo << "pos=\" 0, "<< (cabeceraY->getY() * -2) <<"!\"];" << endl;
+        
+        
+        if(cabeceraY->getAbajo() != NULL){
+            archivo << "    ";
+            archivo << "y" << cabeceraY->getY() << "->" << "y" << cabeceraY->getAbajo()->getY() << "[dir=\"both\"]"<<  endl;
+        }
+    
+        cabeceraY = cabeceraY->getAbajo();
+    }
+    //FIN DE LAS CABECERAS DE Y
+    
+    archivo << endl << endl;
+    
+    //IMPRIMIENDO LOS VALORES DE CADA COLUMNA X
+    NodoOrtogonal* x = cabezaX;
+    while(x != NULL){
+        
+        NodoOrtogonal* rows = x->getAbajo();
+        archivo << "    x" << x->getX() << "->nodo" << rows->getX() << "_" << rows->getY() << "[dir=both];" << endl;
+        while(rows != NULL){
+    
+            archivo << "    ";
+            archivo << "nodo"<< rows->getX() << "_" << rows->getY();
+            archivo << "[ label = \" { "<< rows->getValor() << " } \" ";
+            archivo << "pos =  \""<< (rows->getX() * 2) <<"," << (rows->getY() * -2) << "!\"]; " << endl;
+            
+            if(rows->getAbajo() != NULL){
+                archivo << "    ";
+                archivo << "nodo"<< rows->getX() << "_" << rows->getY() << "->";
+                archivo << "nodo" << rows->getAbajo()->getX() << "_" << rows->getAbajo()->getY() << "[dir=both];" << endl;
+            }
+            
+            rows = rows->getAbajo();
+        }
+        archivo << endl;
+        x = x->getDerecha();
+    }
+    
+    //FIN DE LOS VALORES DE X
+    
+    archivo << endl << endl;
+    
+    //IMPRIMIENDO LOS VALORES DE CADA COLUMNA X
+    NodoOrtogonal* y = cabezaY;
+    while(y != NULL){
+        
+        NodoOrtogonal* cols = y->getDerecha();
+        archivo << "    y" << y->getY() << "->nodo" << cols->getX() << "_" << cols->getY() << "[dir=both];" << endl;
+        while(cols != NULL){
+            
+            if(cols->getDerecha() != NULL){
+                archivo << "    ";
+                archivo << "nodo"<< cols->getX() << "_" << cols->getY() << "->";
+                archivo << "nodo" << cols->getDerecha()->getX() << "_" << cols->getDerecha()->getY() << "[dir=both];" << endl;
+            }
+            
+            cols = cols->getDerecha();
+        }
+        archivo << endl;
+        y = y->getAbajo();
+    }
+    
+    //FIN DE LOS VALORES DE X
+    
+    
+    archivo << "}" << endl;
+    archivo.close();
+    
+}

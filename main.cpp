@@ -23,7 +23,7 @@ int main() {
     cubo->agregar("100,0,15",1,3,1);
     cubo->agregar("15,0,20",1,2,1);
     cubo->agregar("0-0-0", 1, 5,1);
-    cubo->agregar("120-120-120", 5, 10, 5);
+    //cubo->agregar("120-120-120", 5, 10, 5);
     
     cubo->imprimir();
     
