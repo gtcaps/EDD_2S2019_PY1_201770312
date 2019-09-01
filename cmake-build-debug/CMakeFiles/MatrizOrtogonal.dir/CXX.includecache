@@ -6,9 +6,29 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/aybso/CLionProjects/PHOTGEN++/MatrizOrtogonal.cpp
-MatrizOrtogonal.h
-C:/Users/aybso/CLionProjects/PHOTGEN++/MatrizOrtogonal.h
+C:/Users/aybso/CLionProjects/PHOTGEN++/CargarImagen.h
+fstream
+-
+CuboOrtogonal.h
+C:/Users/aybso/CLionProjects/PHOTGEN++/CuboOrtogonal.h
+string
+-
+
+C:/Users/aybso/CLionProjects/PHOTGEN++/CuboOrtogonal.h
+NodoZ.h
+C:/Users/aybso/CLionProjects/PHOTGEN++/NodoZ.h
+ListaDobleLineal.h
+C:/Users/aybso/CLionProjects/PHOTGEN++/ListaDobleLineal.h
+fstream
+-
+direct.h
+-
+
+C:/Users/aybso/CLionProjects/PHOTGEN++/ListaDobleLineal.h
+iostream
+-
+string
+-
 
 C:/Users/aybso/CLionProjects/PHOTGEN++/MatrizOrtogonal.h
 iostream
@@ -21,4 +41,20 @@ fstream
 C:/Users/aybso/CLionProjects/PHOTGEN++/NodoOrtogonal.h
 string
 -
+
+C:/Users/aybso/CLionProjects/PHOTGEN++/NodoZ.h
+MatrizOrtogonal.h
+C:/Users/aybso/CLionProjects/PHOTGEN++/MatrizOrtogonal.h
+
+C:/Users/aybso/CLionProjects/PHOTGEN++/main.cpp
+iostream
+-
+MatrizOrtogonal.h
+C:/Users/aybso/CLionProjects/PHOTGEN++/MatrizOrtogonal.h
+CuboOrtogonal.h
+C:/Users/aybso/CLionProjects/PHOTGEN++/CuboOrtogonal.h
+fstream
+-
+CargarImagen.h
+C:/Users/aybso/CLionProjects/PHOTGEN++/CargarImagen.h
 

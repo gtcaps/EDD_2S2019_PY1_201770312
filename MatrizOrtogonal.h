@@ -35,9 +35,11 @@ class MatrizOrtogonal {
         void insertar(string valor, int x, int y);
         
         void imprimir();
-        void graficar();
+        void graficar(string nombre, int z);
         
-        
+        NodoOrtogonal* getNodo(int x, int y);
+        NodoOrtogonal* getCabezaX();
+        NodoOrtogonal* getCabezaY();
 };
 
 

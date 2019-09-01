@@ -6,7 +6,9 @@
 #define MATRIZORTOGONAL_CUBOORTOGONAL_H
 
 #include "NodoZ.h"
-
+#include "ListaDobleLineal.h"
+#include <fstream>
+#include <direct.h>
 
 class CuboOrtogonal {
 
@@ -17,13 +19,29 @@ class CuboOrtogonal {
         bool existeZ(int z);
         void agregarCabeceraZ(int z);
         NodoZ* getNodeZ(int z);
+        int width, height, pixel_height, pixel_width;
+        string nombreCubo = "";
         
     public:
-        CuboOrtogonal();
+        CuboOrtogonal(string nombre);
         
-        void imprimir();
+        void imprimir(string nombre);
+        void agregar(int z);
         void agregar(string valor, int x, int y, int z);
         NodoZ* getCabeza();
+        void setDimensiones(int w, int h, int ph, int pw);
+        void setNombre(string nombre);
+        
+        int getWidth();
+        int getHeight();
+        int getPixelWidth();
+        int getPixelHeight();
+        string getNombre();
+        
+        void generateMatrix();
+        ListaDobleLineal* linealizarMatrix();
+        
+        void generarImagen();
         
         
         

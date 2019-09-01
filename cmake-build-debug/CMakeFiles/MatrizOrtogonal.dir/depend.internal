@@ -4,6 +4,7 @@
 CMakeFiles/MatrizOrtogonal.dir/CuboOrtogonal.cpp.obj
  C:/Users/aybso/CLionProjects/PHOTGEN++/CuboOrtogonal.cpp
  C:/Users/aybso/CLionProjects/PHOTGEN++/CuboOrtogonal.h
+ C:/Users/aybso/CLionProjects/PHOTGEN++/ListaDobleLineal.h
  C:/Users/aybso/CLionProjects/PHOTGEN++/MatrizOrtogonal.h
  C:/Users/aybso/CLionProjects/PHOTGEN++/NodoOrtogonal.h
  C:/Users/aybso/CLionProjects/PHOTGEN++/NodoZ.h
@@ -20,7 +21,9 @@ CMakeFiles/MatrizOrtogonal.dir/NodoZ.cpp.obj
  C:/Users/aybso/CLionProjects/PHOTGEN++/NodoZ.cpp
  C:/Users/aybso/CLionProjects/PHOTGEN++/NodoZ.h
 CMakeFiles/MatrizOrtogonal.dir/main.cpp.obj
+ C:/Users/aybso/CLionProjects/PHOTGEN++/CargarImagen.h
  C:/Users/aybso/CLionProjects/PHOTGEN++/CuboOrtogonal.h
+ C:/Users/aybso/CLionProjects/PHOTGEN++/ListaDobleLineal.h
  C:/Users/aybso/CLionProjects/PHOTGEN++/MatrizOrtogonal.h
  C:/Users/aybso/CLionProjects/PHOTGEN++/NodoOrtogonal.h
  C:/Users/aybso/CLionProjects/PHOTGEN++/NodoZ.h

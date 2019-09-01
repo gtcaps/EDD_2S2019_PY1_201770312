@@ -82,10 +82,16 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/aybso/CLionProjects/PHOTGEN++/CargarImagen.h">
+			<Option target="MatrizOrtogonal"/>
+		</Unit>
 		<Unit filename="C:/Users/aybso/CLionProjects/PHOTGEN++/CuboOrtogonal.cpp">
 			<Option target="MatrizOrtogonal"/>
 		</Unit>
 		<Unit filename="C:/Users/aybso/CLionProjects/PHOTGEN++/CuboOrtogonal.h">
+			<Option target="MatrizOrtogonal"/>
+		</Unit>
+		<Unit filename="C:/Users/aybso/CLionProjects/PHOTGEN++/ListaDobleLineal.h">
 			<Option target="MatrizOrtogonal"/>
 		</Unit>
 		<Unit filename="C:/Users/aybso/CLionProjects/PHOTGEN++/MatrizOrtogonal.cpp">

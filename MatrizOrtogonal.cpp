@@ -278,11 +278,15 @@ void MatrizOrtogonal::insertar(string valor, int x, int y) {
     
 }
 
-void MatrizOrtogonal::graficar() {
+void MatrizOrtogonal::graficar(string nombre, int z) {
+    string nombre_archivo = nombre;
+    nombre_archivo += "_";
+    nombre_archivo += to_string(z);
+    
     ofstream archivo;
-    archivo.open("cubo.txt");
+    archivo.open(nombre_archivo + ".txt");
     archivo << "digraph SparseMatrix{" << endl;
-    archivo << "    node[shape=record];" << endl;
+    archivo << "    node[shape=record,  width=1.4, height=0.8, fontsize=22, fontcolor=blue ];" << endl;
     archivo << "    graph[pencolor=transparent];" << endl;
     archivo << "    node[style=filled];" << endl;
     archivo << "    rankdir=LR;" << endl << endl;
@@ -294,7 +298,7 @@ void MatrizOrtogonal::graficar() {
     archivo << "    raiz -> x" << cabeceraX->getX() << "[dir=\"both\"]"<< endl;
     while(cabeceraX != NULL){
         archivo << "    ";
-        archivo << "x"<< cabeceraX->getX() <<"[label=\"{ 0 , "<< cabeceraX->getX() <<"}\"";
+        archivo << "x"<< cabeceraX->getX() <<"[label=\"{  "<< cabeceraX->getX() <<" , 0}\"";
         archivo << "pos=\""<< (cabeceraX->getX() * 2) <<",0!\"];" << endl;
         
         if(cabeceraX->getDerecha() != NULL){
@@ -384,4 +388,38 @@ void MatrizOrtogonal::graficar() {
     archivo << "}" << endl;
     archivo.close();
     
+    
+    string generar_grafico = "neato -Tpng ";
+    generar_grafico += nombre_archivo + ".txt";
+    generar_grafico += " -o ";
+    generar_grafico += nombre_archivo + ".png";
+    system((generar_grafico).c_str());
+    
+    string abrir_imagen = nombre_archivo + ".png";
+    system((abrir_imagen).c_str());
+    
+    
+    
+}
+
+NodoOrtogonal *MatrizOrtogonal::getNodo(int x, int y) {
+    if(cabezaX != NULL && cabezaY != NULL){
+        //OBTENGO LA CABECERA EN X
+        NodoOrtogonal* posX = getX(x)->getAbajo();
+        while(posX != NULL){
+            if(posX->getY() == y){
+                return posX;
+            }
+            posX = posX->getAbajo();
+        }
+    }
+    return NULL;
+}
+
+NodoOrtogonal *MatrizOrtogonal::getCabezaX(){
+    return cabezaX;
+}
+
+NodoOrtogonal *MatrizOrtogonal::getCabezaY(){
+    return cabezaY;
 }

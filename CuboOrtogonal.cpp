@@ -4,7 +4,8 @@
 
 #include "CuboOrtogonal.h"
 
-CuboOrtogonal::CuboOrtogonal() {
+CuboOrtogonal::CuboOrtogonal(string nombre) {
+    nombreCubo = nombre;
     cabeza = NULL;
     cola = NULL;
     lengthZ = 0;
@@ -80,17 +81,18 @@ NodoZ *CuboOrtogonal::getNodeZ(int z) {
     return NULL;
 }
 
-void CuboOrtogonal::imprimir() {
+void CuboOrtogonal::imprimir(string nombre) {
 
     if(cabeza == NULL){
         cout << "El cubo esta vacio" << endl;
     }else{
         NodoZ* aux = cabeza;
         while(aux != NULL){
-            cout << "Z = " << aux->getZ() << " ------> " << endl ;
-            aux->getMatriz()->imprimir();
-            aux->getMatriz()->graficar();
-            cout << endl << endl << endl;
+            //cout << "Z = " << aux->getZ() << " ------> " << endl ;
+            //aux->getMatriz()->imprimir();
+            //cout << "Imprimi a mario "<< aux->getZ()  << endl << endl;
+            aux->getMatriz()->graficar(nombre, aux->getZ());
+            //cout << endl << endl << endl;
             aux = aux->getSiguiente();
         }
     }
@@ -102,3 +104,193 @@ void CuboOrtogonal::imprimir() {
 NodoZ *CuboOrtogonal::getCabeza() {
     return cabeza;
 }
+
+void CuboOrtogonal::agregar(int z) {
+    agregarCabeceraZ(z);
+}
+
+void CuboOrtogonal::setDimensiones(int w, int h, int ph, int pw) {
+    width = w;
+    height = h;
+    pixel_width = pw;
+    pixel_height = ph;
+}
+
+int CuboOrtogonal::getWidth() {
+    return width;
+}
+
+int CuboOrtogonal::getHeight() {
+    return height;
+}
+
+int CuboOrtogonal::getPixelWidth() {
+    return pixel_width;
+}
+
+int CuboOrtogonal::getPixelHeight() {
+    return pixel_height;
+}
+
+void CuboOrtogonal::generateMatrix(){
+    MatrizOrtogonal* base = cabeza->getMatriz();
+    NodoZ* aux = cabeza->getSiguiente();
+    
+    
+    
+    int c = 0;
+    while(aux != NULL){
+        MatrizOrtogonal* mod = aux->getMatriz();
+        NodoOrtogonal* y = mod->getCabezaY();
+        
+        
+        while(y != NULL){
+            
+            NodoOrtogonal* x = y->getDerecha();
+            while(x != NULL){
+                NodoOrtogonal* modificarNodo = base->getNodo(x->getX(), x->getY());
+                modificarNodo->setValor(x->getValor(), modificarNodo->getX(), modificarNodo->getY());
+                x = x->getDerecha();
+            }
+            y = y->getAbajo();
+        }
+        aux = aux->getSiguiente();
+    }
+    
+}
+
+void CuboOrtogonal::generarImagen() {
+    
+    ListaDobleLineal* l = linealizarMatrix();
+    
+    
+    //CREO LA CARPETA
+    string cmdCarpeta = "./Exports/" + nombreCubo;
+    _mkdir(cmdCarpeta.c_str());
+    
+    string path = "./Exports/" + nombreCubo + "/";
+    
+    //ARCHIVO HTML
+    ofstream html;
+    html.open(path + nombreCubo + ".html");
+    html << "<!DOCTYPE html>" << endl;
+    html << "<html>" << endl;
+    html << "   <head>" << endl;
+    html << "       <meta charset=\"UTF-8\"  >" << endl;
+    html << "       <title>"<< nombreCubo <<"</title>" << endl;
+    html << "       <link rel=\"stylesheet\" href=\"./"<< nombreCubo <<".css\">" << endl;
+    html << "   </head>" << endl;
+    html << "   <body>" << endl;
+    html << "   <div class = \"image-container\">" << endl;
+    
+    for(int i = 0; i < l->getSize(); i++){
+        html << "       <div class = \"pixel\"></div>" << endl;
+    }
+    
+    html << "   </div>" << endl;
+    html << "   </body>" << endl;
+    html << "</html>" << endl;
+    html.close();
+    
+    
+    //ARCHIVO CSS
+    ofstream css;
+    css.open(path + nombreCubo + ".css");
+    css << "*{\n    margin:0; \n    padding: 0;\n}" << endl << endl;
+    css << "body{" << endl;
+    css << "    background: #333333;" << endl;
+    css << "}" << endl << endl;
+    css << ".image-container{" << endl;
+    css << "    margin:0 auto;" << endl;
+    css << "    margin-top: 150px;" << endl;
+    css << "    margin-bottom: 150px;" << endl;
+    css << "    width:"<<(width * pixel_width)<<"px;" << endl;
+    css << "    height:"<< (height * pixel_height) <<"px ;" << endl;
+    css << "    display: flex;" << endl;
+    css << "    flex-wrap: wrap;" << endl;
+    css << "    background: transparent;" << endl;
+    css << "}" << endl << endl;
+    css << ".pixel{" << endl;
+    css << "    width:"<< pixel_width <<"px;" << endl;
+    css << "    height:"<< pixel_height <<"px;" << endl;
+    css << "}" << endl << endl;
+    
+    NodoLineal* color = l->getCabeza();
+    while(color != NULL){
+        css << ".pixel:nth-child("<< color->getPosicion() <<"){" << endl;
+        
+        if(color->getRed() == "x"){
+            css << " background: transparent;" << endl;
+        }else{
+            css << " background: rgb( "<< color->getColor() <<" );" << endl;
+        }
+        
+        css << "}" << endl << endl;
+        color = color->getSiguiente();
+    }
+    
+    css.close();
+    
+}
+
+ListaDobleLineal* CuboOrtogonal::linealizarMatrix() {
+    
+    generateMatrix();
+    ListaDobleLineal* lista = new ListaDobleLineal();
+    
+    MatrizOrtogonal* base = cabeza->getMatriz();
+    NodoOrtogonal* y = base->getCabezaY();
+    int pos = 0;
+    
+    while(y != NULL){
+        
+        NodoOrtogonal* x = y->getDerecha();
+        while(x != NULL){
+            
+            if(x->getValor() == "x"){
+                lista->add(pos, "x","x","x");
+                pos++;
+            }else{
+                size_t posComa = x->getValor().find("-");
+                string red = x->getValor().substr(0, posComa);
+                
+                string auxG = x->getValor().substr(posComa + 1);
+                posComa = auxG.find("-");
+                string green = auxG.substr(0, posComa);
+                
+                string blue = auxG.substr(posComa + 1);
+                
+                lista->add(pos, red, green, blue);
+                
+                pos++;
+            }
+            
+            
+            x = x->getDerecha();
+        }
+        y = y->getAbajo();
+    }
+    
+    return lista;
+    
+}
+
+void CuboOrtogonal::setNombre(string nombre) {
+    nombreCubo = nombre;
+}
+
+string CuboOrtogonal::getNombre() {
+    return nombreCubo;
+}
+
+
+
+
+
+
+
+
+
+
+
+

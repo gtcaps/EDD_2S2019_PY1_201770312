@@ -15,6 +15,7 @@ class NodoZ {
         NodoZ* siguiente;
         NodoZ* anterior;
         
+        
     public:
         NodoZ();
         NodoZ(int z);
