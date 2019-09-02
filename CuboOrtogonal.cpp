@@ -163,7 +163,6 @@ void CuboOrtogonal::generarImagen() {
     
     ListaDobleLineal* l = linealizarMatrix();
     
-    
     //CREO LA CARPETA
     string cmdCarpeta = "./Exports/" + nombreCubo;
     _mkdir(cmdCarpeta.c_str());
@@ -198,7 +197,7 @@ void CuboOrtogonal::generarImagen() {
     css.open(path + nombreCubo + ".css");
     css << "*{\n    margin:0; \n    padding: 0;\n}" << endl << endl;
     css << "body{" << endl;
-    css << "    background: #333333;" << endl;
+    css << "    background: #BDBDBD;" << endl;
     css << "}" << endl << endl;
     css << ".image-container{" << endl;
     css << "    margin:0 auto;" << endl;
@@ -281,6 +280,99 @@ void CuboOrtogonal::setNombre(string nombre) {
 
 string CuboOrtogonal::getNombre() {
     return nombreCubo;
+}
+
+//FILTROS EN PRUEBA ------------------------------------
+
+void CuboOrtogonal::filtroNegativo() {
+    
+    if(cabeza->getSiguiente() != NULL){
+        NodoZ* aux = cabeza->getSiguiente();
+        while(aux != NULL){
+            aux->getMatriz()->filtroNegativo();
+            aux = aux->getSiguiente();
+        }
+    }
+    
+    generarImagen();
+    
+}
+
+void CuboOrtogonal::filtroEscalaGrises() {
+    if(cabeza->getSiguiente() != NULL){
+        NodoZ* aux = cabeza->getSiguiente();
+        while(aux != NULL){
+            aux->getMatriz()->filtroEscalaGrises();
+            aux = aux->getSiguiente();
+        }
+    }
+    
+    generarImagen();
+}
+
+void CuboOrtogonal::filtroEspejoX() {
+
+    if(cabeza->getSiguiente() != NULL){
+        NodoZ* aux = cabeza->getSiguiente();
+        while(aux != NULL){
+            MatrizOrtogonal* espejo = aux->getMatriz()->filtroEspejoX(width);
+            aux->setMatriz(espejo);
+            aux = aux->getSiguiente();
+        }
+    }
+    
+    generarImagen();
+    
+}
+
+void CuboOrtogonal::filtroEspejoY() {
+    if(cabeza->getSiguiente() != NULL){
+        NodoZ* aux = cabeza->getSiguiente();
+        while(aux != NULL){
+            MatrizOrtogonal* espejo = aux->getMatriz()->filtroEspejoY(height);
+            aux->setMatriz(espejo);
+            aux = aux->getSiguiente();
+        }
+    }
+    
+    generarImagen();
+}
+
+void CuboOrtogonal::filtroDobleEspejo() {
+    
+    //FILTRO EN X
+    if(cabeza->getSiguiente() != NULL){
+        NodoZ* aux = cabeza->getSiguiente();
+        while(aux != NULL){
+            MatrizOrtogonal* espejo = aux->getMatriz()->filtroEspejoX(width);
+            aux->setMatriz(espejo);
+            aux = aux->getSiguiente();
+        }
+    }
+    
+    //FILTRO EN Y
+    if(cabeza->getSiguiente() != NULL){
+        NodoZ* aux = cabeza->getSiguiente();
+        while(aux != NULL){
+            MatrizOrtogonal* espejo = aux->getMatriz()->filtroEspejoY(height);
+            aux->setMatriz(espejo);
+            aux = aux->getSiguiente();
+        }
+    }
+    
+    generarImagen();
+}
+
+void CuboOrtogonal::reporteCapas() {
+    if(cabeza != NULL){
+        generateMatrix();
+        NodoZ* aux = cabeza;
+        
+        while(aux != NULL){
+            aux->getMatriz()->graficar(nombreCubo, aux->getZ());
+            aux = aux->getSiguiente();
+        }
+    }
 }
 
 

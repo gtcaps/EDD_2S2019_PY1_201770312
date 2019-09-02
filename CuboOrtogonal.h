@@ -43,7 +43,18 @@ class CuboOrtogonal {
         
         void generarImagen();
         
+        void reporteCapas();
         
+        //PRUEBA DE LOS FILTOS ------------------------
+        void filtroNegativo();
+        
+        void filtroEscalaGrises();
+        
+        void filtroEspejoX();
+        
+        void filtroEspejoY();
+        
+        void filtroDobleEspejo();
         
 };
 

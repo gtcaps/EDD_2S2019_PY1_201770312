@@ -423,3 +423,120 @@ NodoOrtogonal *MatrizOrtogonal::getCabezaX(){
 NodoOrtogonal *MatrizOrtogonal::getCabezaY(){
     return cabezaY;
 }
+
+void MatrizOrtogonal::filtroNegativo() {
+    if(cabezaX != NULL && cabezaY != NULL){
+        NodoOrtogonal* auxY = cabezaY;
+        
+        while(auxY != NULL){
+            NodoOrtogonal* x = auxY->getDerecha();
+    
+            while(x != NULL){
+        
+                if(x->getValor() != "x"){
+                    size_t posComa = x->getValor().find("-");
+                    int red = stoi(x->getValor().substr(0, posComa));
+            
+                    string auxG = x->getValor().substr(posComa + 1);
+                    posComa = auxG.find("-");
+                    int green = stoi(auxG.substr(0, posComa));
+            
+                    int blue = stoi(auxG.substr(posComa + 1));
+                    
+                    //CALCULAR EL NEGATIVO DE CADA COLOR
+                    red = 255 - red;
+                    green = 255 - green;
+                    blue = 255 - blue;
+                    
+                    string negativo = to_string(red) + "-" +to_string(green) + "-" + to_string(blue);
+                    
+                    x->setValor(negativo, x->getX(), x->getY());
+                }
+                
+                x = x->getDerecha();
+            }
+            
+            auxY = auxY->getAbajo();
+        }
+        
+    }
+}
+
+void MatrizOrtogonal::filtroEscalaGrises() {
+    if(cabezaX != NULL && cabezaY != NULL){
+        NodoOrtogonal* auxY = cabezaY;
+        
+        while(auxY != NULL){
+            NodoOrtogonal* x = auxY->getDerecha();
+            
+            while(x != NULL){
+                
+                if(x->getValor() != "x"){
+                    size_t posComa = x->getValor().find("-");
+                    int red = stoi(x->getValor().substr(0, posComa));
+                    
+                    string auxG = x->getValor().substr(posComa + 1);
+                    posComa = auxG.find("-");
+                    int green = stoi(auxG.substr(0, posComa));
+                    
+                    int blue = stoi(auxG.substr(posComa + 1));
+                    
+                    //CALCULAR EL GRIS EQUIVALENTE
+                    int gray = (0.3 * red) + (0.59 * green) + (0.11*blue);
+                    
+                    string gris = to_string(gray) + "-" +to_string(gray) + "-" + to_string(gray);
+                    
+                    x->setValor(gris, x->getX(), x->getY());
+                }
+                
+                x = x->getDerecha();
+            }
+            
+            auxY = auxY->getAbajo();
+        }
+        
+    }
+}
+
+
+MatrizOrtogonal* MatrizOrtogonal::filtroEspejoX(int width){
+    if(cabezaX != NULL && cabezaY != NULL){
+        MatrizOrtogonal* espejo = new MatrizOrtogonal();
+        NodoOrtogonal* auxY = cabezaY;
+        
+        while(auxY != NULL){
+            NodoOrtogonal* xInicio = auxY->getDerecha();
+            
+            while (xInicio != NULL){
+                espejo->insertar(xInicio->getValor(), (width + 1 - xInicio->getX()), xInicio->getY());
+                xInicio = xInicio->getDerecha();
+            }
+            
+            auxY = auxY->getAbajo();
+        }
+        return espejo;
+    }
+    return  NULL;
+}
+
+MatrizOrtogonal *MatrizOrtogonal::filtroEspejoY(int height) {
+    if(cabezaX != NULL && cabezaY != NULL){
+        MatrizOrtogonal* espejo = new MatrizOrtogonal();
+        NodoOrtogonal* auxX = cabezaX;
+        
+        while(auxX != NULL){
+            NodoOrtogonal* yInicio = auxX->getAbajo();
+            
+            while (yInicio != NULL){
+                espejo->insertar(yInicio->getValor(), yInicio->getX(), (height + 1 - yInicio->getY()));
+                yInicio = yInicio->getAbajo();
+            }
+            
+            auxX = auxX->getDerecha();
+        }
+        return espejo;
+    }
+    return  NULL;
+}
+
+

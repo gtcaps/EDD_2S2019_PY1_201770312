@@ -40,6 +40,11 @@ class MatrizOrtogonal {
         NodoOrtogonal* getNodo(int x, int y);
         NodoOrtogonal* getCabezaX();
         NodoOrtogonal* getCabezaY();
+        
+        void filtroNegativo();
+        void filtroEscalaGrises();
+        MatrizOrtogonal* filtroEspejoX(int width);
+        MatrizOrtogonal* filtroEspejoY(int height);
 };
 
 
