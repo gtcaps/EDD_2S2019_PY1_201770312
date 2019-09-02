@@ -57,3 +57,7 @@ NodoZ::NodoZ(int z) {
     siguiente = NULL;
     anterior = NULL;
 }
+
+void NodoZ::setMatriz(MatrizOrtogonal *matriz_) {
+    matriz = matriz_;
+}

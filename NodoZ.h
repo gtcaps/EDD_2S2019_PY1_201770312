@@ -30,6 +30,7 @@ class NodoZ {
         void setZ(int z);
         void setSiguiente(NodoZ* siguiente);
         void setAnterior(NodoZ* anterior);
+        void setMatriz(MatrizOrtogonal* matriz_);
         
 };
 
