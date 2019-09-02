@@ -13,9 +13,27 @@ int main() {
     CuboOrtogonal* kubo = img->getImagen();
     //kubo->generarImagen();
     
-    CargarImagen* img2 = new CargarImagen("hulk","hulk");
+    CargarImagen* img2 = new CargarImagen("deadpool","deadpool");
     CuboOrtogonal* cubo = img2->getImagen();
+    cubo->generarImagen();
+    //cubo->filtroNegativo();
+    //cubo->filtroEscalaGrises();
+    //cubo->filtroEspejoY();
+    //cubo->filtroEspejoX();
+    //cubo->filtroDobleEspejo();
     
+    
+    CargarImagen* img3 = new CargarImagen("mario","mario");
+    CuboOrtogonal* mario = img3->getImagen();
+    //mario->filtroNegativo();
+    //mario->generarImagen();
+    //mario->filtroEscalaGrises();
+    //mario->filtroEspejoX();
+    //mario->filtroEspejoY();
+    //mario->filtroDobleEspejo();
+    //mario->reporteCapas();
+    
+    /*
     cout << "----> " << kubo << endl;
     cout << "----> " << cubo << endl;
     
@@ -27,6 +45,7 @@ int main() {
     arbolImagenes->graficarPreOrden();
     arbolImagenes->graficarPostOrden();
     arbolImagenes->getOpcionesEnOrden();
+    */
     
     return 0;
 }
