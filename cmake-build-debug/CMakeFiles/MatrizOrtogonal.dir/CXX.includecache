@@ -6,6 +6,18 @@
 
 #IncludeRegexTransform: 
 
+C:/Users/aybso/CLionProjects/PHOTGEN++/ABB.h
+iostream
+-
+string
+-
+fstream
+-
+direct.h
+-
+CuboOrtogonal.h
+C:/Users/aybso/CLionProjects/PHOTGEN++/CuboOrtogonal.h
+
 C:/Users/aybso/CLionProjects/PHOTGEN++/CargarImagen.h
 fstream
 -
@@ -57,4 +69,6 @@ fstream
 -
 CargarImagen.h
 C:/Users/aybso/CLionProjects/PHOTGEN++/CargarImagen.h
+ABB.h
+C:/Users/aybso/CLionProjects/PHOTGEN++/ABB.h
 

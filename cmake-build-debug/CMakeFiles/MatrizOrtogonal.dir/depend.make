@@ -20,6 +20,7 @@ CMakeFiles/MatrizOrtogonal.dir/NodoZ.cpp.obj: ../NodoOrtogonal.h
 CMakeFiles/MatrizOrtogonal.dir/NodoZ.cpp.obj: ../NodoZ.cpp
 CMakeFiles/MatrizOrtogonal.dir/NodoZ.cpp.obj: ../NodoZ.h
 
+CMakeFiles/MatrizOrtogonal.dir/main.cpp.obj: ../ABB.h
 CMakeFiles/MatrizOrtogonal.dir/main.cpp.obj: ../CargarImagen.h
 CMakeFiles/MatrizOrtogonal.dir/main.cpp.obj: ../CuboOrtogonal.h
 CMakeFiles/MatrizOrtogonal.dir/main.cpp.obj: ../ListaDobleLineal.h

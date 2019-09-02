@@ -1,0 +1,10 @@
+digraph InOrden{
+    rankdir=LR;
+    subgraph cluster_0{
+        style = filled;
+        color = lightgrey;
+        node[style=filled, color=white] 
+        hulk -> realmadrid
+        label= "Listado de imagenes En Post-Orden"
+    }
+}

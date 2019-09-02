@@ -1,0 +1,14 @@
+digraph abb{
+    rankdir=TB;
+    node [shape = record];
+    graph [ranksep="1"];
+
+    nodo_realmadrid[ label="<i>|realmadrid|<d>" ]
+    nodo_hulk[ label="<i>|hulk|<d>" ]
+    nodo_realmadrid:i-> nodo_hulk
+
+
+    nodo_hulk[ label="<i>|hulk|<d>" ]
+
+
+}
