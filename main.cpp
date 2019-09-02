@@ -3,6 +3,7 @@
 #include "CuboOrtogonal.h"
 #include <fstream>
 #include "CargarImagen.h"
+#include "ABB.h"
 
 using namespace std;
 
@@ -17,6 +18,15 @@ int main() {
     
     cout << "----> " << kubo << endl;
     cout << "----> " << cubo << endl;
+    
+    ABB* arbolImagenes = new ABB();
+    arbolImagenes->add(img->getImagen()->getNombre() , img->getImagen());
+    arbolImagenes->add(cubo->getNombre(), cubo);
+    arbolImagenes->graficarABB();
+    arbolImagenes->graficarEnOrden();
+    arbolImagenes->graficarPreOrden();
+    arbolImagenes->graficarPostOrden();
+    arbolImagenes->getOpcionesEnOrden();
     
     return 0;
 }
