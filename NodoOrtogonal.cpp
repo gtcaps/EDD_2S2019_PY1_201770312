@@ -12,7 +12,7 @@ NodoOrtogonal::NodoOrtogonal() {
     abajo = NULL;
     derecha = NULL;
     izquierda = NULL;
-    
+    opacityColor = "255,255,255,0.5";
 }
 
 NodoOrtogonal::NodoOrtogonal(string valor_, int posX_, int posY_) {
@@ -23,6 +23,7 @@ NodoOrtogonal::NodoOrtogonal(string valor_, int posX_, int posY_) {
     abajo = NULL;
     izquierda = NULL;
     derecha = NULL;
+    opacityColor = "255,255,255,0.5";
 }
 
 void NodoOrtogonal::setValor(string valor_, int posX_, int posY_) {
@@ -81,4 +82,12 @@ int NodoOrtogonal::getX() {
 
 int NodoOrtogonal::getY() {
     return posY;
+}
+
+void NodoOrtogonal::setOpacityColor(string color) {
+    opacityColor = color;
+}
+
+string NodoOrtogonal::getOpacityColor() {
+    return opacityColor;
 }

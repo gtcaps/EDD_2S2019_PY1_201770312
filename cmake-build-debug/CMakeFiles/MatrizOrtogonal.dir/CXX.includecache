@@ -15,6 +15,8 @@ fstream
 -
 direct.h
 -
+CargarImagen.h
+C:/Users/aybso/CLionProjects/PHOTGEN++/CargarImagen.h
 CuboOrtogonal.h
 C:/Users/aybso/CLionProjects/PHOTGEN++/CuboOrtogonal.h
 
@@ -35,6 +37,14 @@ fstream
 -
 direct.h
 -
+algorithm
+-
+
+C:/Users/aybso/CLionProjects/PHOTGEN++/ListaCircular.h
+cstring
+-
+CuboOrtogonal.h
+C:/Users/aybso/CLionProjects/PHOTGEN++/CuboOrtogonal.h
 
 C:/Users/aybso/CLionProjects/PHOTGEN++/ListaDobleLineal.h
 iostream
@@ -48,6 +58,10 @@ iostream
 NodoOrtogonal.h
 C:/Users/aybso/CLionProjects/PHOTGEN++/NodoOrtogonal.h
 fstream
+-
+algorithm
+-
+math.h
 -
 
 C:/Users/aybso/CLionProjects/PHOTGEN++/NodoOrtogonal.h
@@ -71,4 +85,8 @@ CargarImagen.h
 C:/Users/aybso/CLionProjects/PHOTGEN++/CargarImagen.h
 ABB.h
 C:/Users/aybso/CLionProjects/PHOTGEN++/ABB.h
+math.h
+-
+ListaCircular.h
+C:/Users/aybso/CLionProjects/PHOTGEN++/ListaCircular.h
 
