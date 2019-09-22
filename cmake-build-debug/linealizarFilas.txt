@@ -1,0 +1,58 @@
+digraph filas{
+    rankdir=LR;
+    node [shape = record];
+    graph [ranksep="1"];
+
+    nodo10_20[ label=" 255-193-7\n Pos[ 10  , 20 ]   " ];
+    nodo11_20[label=" 255-193-7\n Pos[ 11  , 20 ]   " ];
+    nodo10_20->nodo11_20;
+    nodo11_20[ label=" 255-193-7\n Pos[ 11  , 20 ]   " ];
+    nodo21_20[label=" 255-193-7\n Pos[ 21  , 20 ]   " ];
+    nodo11_20->nodo21_20;
+    nodo21_20[ label=" 255-193-7\n Pos[ 21  , 20 ]   " ];
+    nodo22_20[label=" 255-193-7\n Pos[ 22  , 20 ]   " ];
+    nodo21_20->nodo22_20;
+    nodo22_20[ label=" 255-193-7\n Pos[ 22  , 20 ]   " ];
+    nodo11_21[ label=" 255-193-7\n Pos[ 0  , 20 ]   " ];
+    nodo22_20->nodo11_21
+
+
+    { rank=same;  nodo10_20; nodo11_21;}
+
+    nodo11_21[ label=" 255-193-7\n Pos[ 11  , 21 ]   " ];
+    nodo21_21[label=" 255-193-7\n Pos[ 21  , 21 ]   " ];
+    nodo11_21->nodo21_21;
+    nodo21_21[ label=" 255-193-7\n Pos[ 21  , 21 ]   " ];
+    nodo12_24[ label=" 255-193-7\n Pos[ 0  , 21 ]   " ];
+    nodo21_21->nodo12_24
+
+
+    { rank=same;  nodo11_21; nodo12_24;}
+
+    nodo12_24[ label=" 255-193-7\n Pos[ 12  , 24 ]   " ];
+    nodo13_24[label=" 255-193-7\n Pos[ 13  , 24 ]   " ];
+    nodo12_24->nodo13_24;
+    nodo13_24[ label=" 255-193-7\n Pos[ 13  , 24 ]   " ];
+    nodo19_24[label=" 255-193-7\n Pos[ 19  , 24 ]   " ];
+    nodo13_24->nodo19_24;
+    nodo19_24[ label=" 255-193-7\n Pos[ 19  , 24 ]   " ];
+    nodo20_24[label=" 255-193-7\n Pos[ 20  , 24 ]   " ];
+    nodo19_24->nodo20_24;
+    nodo20_24[ label=" 255-193-7\n Pos[ 20  , 24 ]   " ];
+    nodo13_25[ label=" 255-193-7\n Pos[ 0  , 24 ]   " ];
+    nodo20_24->nodo13_25
+
+
+    { rank=same;  nodo12_24; nodo13_25;}
+
+    nodo13_25[ label=" 255-193-7\n Pos[ 13  , 25 ]   " ];
+    nodo14_25[label=" 255-193-7\n Pos[ 14  , 25 ]   " ];
+    nodo13_25->nodo14_25;
+    nodo14_25[ label=" 255-193-7\n Pos[ 14  , 25 ]   " ];
+    nodo18_25[label=" 255-193-7\n Pos[ 18  , 25 ]   " ];
+    nodo14_25->nodo18_25;
+    nodo18_25[ label=" 255-193-7\n Pos[ 18  , 25 ]   " ];
+    nodo19_25[label=" 255-193-7\n Pos[ 19  , 25 ]   " ];
+    nodo18_25->nodo19_25;
+    nodo19_25[ label=" 255-193-7\n Pos[ 19  , 25 ]   " ];
+}

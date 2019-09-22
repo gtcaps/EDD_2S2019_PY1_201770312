@@ -572,6 +572,86 @@ void reportes(){
     
         }else if(opc == 3){
     
+            if(listaImagenes->size() == 0){
+                cout << "No hay imagenes cargadas aun. "  << endl << endl << endl ;
+                system("pause");
+            }else{
+                cout << "----------------------------------------" << endl;
+                string* opciones = listaImagenes->getOpcionesEnOrden();
+                cout << "----------------------------------------" << endl;
+        
+                int opcImg = 0;
+                do{
+                    cout << "Seleccione una imagen: ";
+                    cin >> opcImg;
+                    limpiarBuffer();
+            
+                    if(opcImg > 0 && opcImg <= listaImagenes->size()){
+                        cout << "----------------------------------------" << endl;
+                        cout << "Seleccionaste " << opciones[opcImg - 1] << endl;
+                        cout << "----------------------------------------" << endl;
+                        CuboOrtogonal* imagen = listaImagenes->getCubo(opciones[opcImg - 1]);
+                        imagen->generateMatrix();
+                        NodoZ* aux = imagen->getCabeza();
+                
+                        while(aux != NULL){
+                            if(aux->getZ() == 0){
+                                cout << aux->getZ() << ". Cubo Completo" << endl;
+                            }else{
+                                cout << aux->getZ() << ". Capa " << aux->getZ() << endl;
+                            }
+                            aux = aux->getSiguiente();
+                        }
+                
+                        int opcGrap = -1;
+                        do {
+                            cout << "Seleccione la capa a graficar: ";
+                            cin >> opcGrap;
+                            limpiarBuffer();
+                    
+                            if(imagen->existeZ(opcGrap) == true){
+                                MatrizOrtogonal* m = imagen->getNodeZ(opcGrap)->getMatriz();
+    
+                                cout << "----------------------------------------" << endl;
+                                cout << "1. Linealizar por Filas" << endl;
+                                cout << "2. Linealizar por Columnas" << endl;
+                                
+                                int opcLineal = 0;
+                                
+                                do{
+                                    cout << " Ingrese la forma de linealizar: ";
+                                    cin >> opcLineal;
+                                    
+                                    limpiarBuffer();
+                                    
+                                    if(opcLineal == 1){
+                                        m->reporteLinealFilas();
+                                    }else if(opcLineal == 2){
+                                        m->reporteLinealColumnas();
+                                    }else{
+                                        opcLineal = 0;
+                                    }
+                                }while(opcLineal == 0);
+                                
+                                break;
+                            }else{
+                                opcGrap = -1;
+                            }
+                    
+                        }while(opcGrap == -1);
+                
+                    }else{
+                        opcImg == 0;
+                    }
+            
+                }while(opcImg < 0 || opcImg > listaImagenes->size());
+        
+        
+        
+                cout << endl << endl << endl;
+            }
+            
+            
         }else if(opc == 4){
     
             cout << "----------------------------------------" << endl;
@@ -603,7 +683,132 @@ void reportes(){
             
             
         }else if(opc == 5){
+            cout << "----------------------------------------" << endl;
+            cout << "1. Reporte de todos los filtros" << endl;
+            cout << "2. Reporte de filtro Individual" << endl;
+            
+            int opcFil = 0;
+            
+            do{
+                
+                cout << "Ingresa una opcion: ";
+                cin >> opcFil;
+                
+                limpiarBuffer();
+                
+                if(opcFil == 1){
+                    listaFiltros->graficar();
+                }else if(opcFil == 2){
+                    cout << "----------------------------------------" << endl;
     
+                    if(listaFiltros->getLength() == 0){
+                        cout << "No ha seleccionado una imagen aun. "  << endl << endl << endl ;
+                        system("pause");
+                    }else{
+                        NodoCircular* imagenes = listaFiltros->getCabeza();
+                        int size = 1;
+        
+                        while(size <= listaFiltros->getLength()){
+                            cout << size << ". " << imagenes->getFiltro() << endl;
+                            imagenes = imagenes->getSiguiente();
+                            size++;
+                        }
+        
+                        cout << size << ". Salir" << endl;
+                        cout << "----------------------------------------" << endl;
+        
+                        int opc = 0;
+                        do{
+                            cout << "Seleccione la imagen a linealizar: " << endl;
+                            cin >> opc;
+            
+                            if(opc > 0 && opc <= (listaFiltros->getLength() + 1)){
+                                if(opc == size){
+                                    break;
+                                }else{
+                                   //listaFiltros->generarImagen(opc);
+                                    //system("pause");
+                                    listaFiltros->getCabeza();
+                                    
+                                    NodoCircular* f = listaFiltros->getCabeza();
+                                    int contf = 0;
+                                    
+                                    while(contf < listaFiltros->getLength()){
+                                        if(contf == opc){
+                                            break;
+                                        }
+                                        f = f->getSiguiente();
+                                        contf++;
+                                    }
+                                    
+                                    CuboOrtogonal* c = f->getCImagen();
+                                    CuboOrtogonal* imagen = listaImagenes->getCubo(c->getNombre());
+                                    imagen->generateMatrix();
+                                    NodoZ* aux = imagen->getCabeza();
+    
+                                    while(aux != NULL){
+                                        if(aux->getZ() == 0){
+                                            cout << aux->getZ() << ". Cubo Completo" << endl;
+                                        }else{
+                                            cout << aux->getZ() << ". Capa " << aux->getZ() << endl;
+                                        }
+                                        aux = aux->getSiguiente();
+                                    }
+    
+                                    int opcGrap = -1;
+                                    do {
+                                        cout << "Seleccione la capa a graficar: ";
+                                        cin >> opcGrap;
+                                        limpiarBuffer();
+        
+                                        if(imagen->existeZ(opcGrap) == true){
+                                            MatrizOrtogonal* m = imagen->getNodeZ(opcGrap)->getMatriz();
+            
+                                            cout << "----------------------------------------" << endl;
+                                            cout << "1. Linealizar por Filas" << endl;
+                                            cout << "2. Linealizar por Columnas" << endl;
+            
+                                            int opcLineal = 0;
+            
+                                            do{
+                                                cout << " Ingrese la forma de linealizar: ";
+                                                cin >> opcLineal;
+                
+                                                limpiarBuffer();
+                
+                                                if(opcLineal == 1){
+                                                    m->reporteLinealFilas();
+                                                }else if(opcLineal == 2){
+                                                    m->reporteLinealColumnas();
+                                                }else{
+                                                    opcLineal = 0;
+                                                }
+                                            }while(opcLineal == 0);
+            
+                                            break;
+                                        }else{
+                                            opcGrap = -1;
+                                        }
+        
+                                    }while(opcGrap == -1);
+                                    
+                                    
+                                }
+                            }else{
+                                opc = 0;
+                            }
+            
+                        }while(opc == 0);
+                    }
+    
+                    cout << endl << endl;
+                }else{
+                    opcFil = 0;
+                }
+                
+                
+            }while(opcFil == 0);
+            
         }else if(opc == 6){
             break;
         }else{
