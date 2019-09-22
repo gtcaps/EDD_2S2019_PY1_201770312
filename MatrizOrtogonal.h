@@ -8,6 +8,8 @@
 #include <iostream>
 #include "NodoOrtogonal.h"
 #include <fstream>
+#include <algorithm>
+#include <math.h>
 
 using namespace std;
 
@@ -36,15 +38,29 @@ class MatrizOrtogonal {
         
         void imprimir();
         void graficar(string nombre, int z);
+        void graficar(string nombre, int z, string img);
         
         NodoOrtogonal* getNodo(int x, int y);
         NodoOrtogonal* getCabezaX();
         NodoOrtogonal* getCabezaY();
         
+        //FILTROS
         void filtroNegativo();
         void filtroEscalaGrises();
         MatrizOrtogonal* filtroEspejoX(int width);
         MatrizOrtogonal* filtroEspejoY(int height);
+        MatrizOrtogonal* filtroCollage(int width, int height, int repX, int repY);
+        MatrizOrtogonal* filtroMosaico(int width, int height);
+        
+        MatrizOrtogonal* getCopiaMatriz();
+        
+        int getSizeX();
+        int getSizeY();
+        
+        void reporteLinealFilas();
+        void reporteLinealColumnas();
+        
+        
 };
 
 

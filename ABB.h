@@ -9,6 +9,7 @@
 #include <string>
 #include <fstream>
 #include <direct.h>
+#include "CargarImagen.h"
 #include "CuboOrtogonal.h"
 using  namespace std;
 
@@ -200,25 +201,28 @@ class ABB{
             cantidadNodos = 0;
         }
         
-        void add(string valor, CuboOrtogonal* imagen){
+        void add(CargarImagen* img){
             
-            if(esNulo(raiz) == true){
-                raiz = new NodoABB(valor,imagen);
-                cantidadNodos++;
-            }else{
-                
-                NodoABB* padre = obtenerPadre(valor);
-                if(padre->getValor().compare(valor) == -1){
-                    padre->setDerecha(new NodoABB(valor, imagen));
-                    cantidadNodos++;
-                }else if(padre->getValor().compare(valor) == 1){
-                    padre->setIzquierda(new NodoABB(valor, imagen));
+            if(img->getImagen()->getNombre() != "vacio"){
+                if(esNulo(raiz) == true){
+                    raiz = new NodoABB(img->getImagen()->getNombre(), img->getImagen());
                     cantidadNodos++;
                 }else{
-                    cout << endl << "No se aceptan valores repetidos" << endl;
+        
+                    NodoABB* padre = obtenerPadre(img->getImagen()->getNombre());
+                    if(padre->getValor().compare(img->getImagen()->getNombre()) == -1){
+                        padre->setDerecha(new NodoABB(img->getImagen()->getNombre(), img->getImagen()));
+                        cantidadNodos++;
+                    }else if(padre->getValor().compare(img->getImagen()->getNombre()) == 1){
+                        padre->setIzquierda(new NodoABB(img->getImagen()->getNombre(), img->getImagen()));
+                        cantidadNodos++;
+                    }else{
+                        cout << endl << "No se aceptan valores repetidos" << endl;
+                    }
+        
                 }
-                
             }
+            
         }
         
         void graficarEnOrden(){
@@ -386,19 +390,31 @@ class ABB{
                 
                 while(aux->size != 0){
                     NodoABB* nodo = aux->pop();
-                    dot << "    nodo_" << nodo->getValor() << "[ label=\"<i>|"<< nodo->getValor()  <<"|<d>\" ]" << endl;
+                    dot << "    nodo_" << nodo->getValor() << "[ label=\"<i>|"<< nodo->getValor()  << "\\n";
+                    dot << "------------------------------- \\n";
+                    dot << "Width: " << nodo->getImagen()->getWidth() << "px - Height: " << nodo->getImagen()->getHeight() <<"\\n\\n";
+                    dot << "Pixel-W: " << nodo->getImagen()->getPixelWidth() << "px - Pixel-H: " << nodo->getImagen()->getPixelHeight();
+                    dot << "px |<d>\" ]" << endl;
                     
                     if(nodo == NULL){
                         continue;
                     }else{
                         if(existeHijoIzquierdo(nodo)){
-                            dot << "    nodo_" << nodo->getIzquierda()->getValor() << "[ label=\"<i>|"<< nodo->getIzquierda()->getValor()  <<"|<d>\" ]" << endl;
+                            dot << "    nodo_" << nodo->getIzquierda()->getValor() << "[ label=\"<i>|"<< nodo->getIzquierda()->getValor()  <<"\\n";
+                            dot << "------------------------------- \\n";
+                            dot << "Width: " << nodo->getImagen()->getWidth() << "px - Height: " << nodo->getImagen()->getHeight() <<"\\n\\n";
+                            dot << "Pixel-W: " << nodo->getImagen()->getPixelWidth() << "px - Pixel-H: " << nodo->getImagen()->getPixelHeight();
+                            dot << "px |<d>\" ]" << endl;
                             dot << "    nodo_" << nodo->getValor() << ":i-> nodo_" << nodo->getIzquierda()->getValor()  << endl;
                             aux->push(nodo->getIzquierda());
                         }
                         
                         if(existeHijoDerecho(nodo)){
-                            dot << "    nodo_" << nodo->getDerecha()->getValor() << "[ label=\"<i>|"<< nodo->getDerecha()->getValor()  <<"|<d>\" ]" << endl;
+                            dot << "    nodo_" << nodo->getDerecha()->getValor() << "[ label=\"<i>|"<< nodo->getDerecha()->getValor()  <<"\\n";
+                            dot << "------------------------------- \\n";
+                            dot << "Width: " << nodo->getImagen()->getWidth() << "px - Height: " << nodo->getImagen()->getHeight() <<"\\n\\n";
+                            dot << "Pixel-W: " << nodo->getImagen()->getPixelWidth() << "px - Pixel-H: " << nodo->getImagen()->getPixelHeight();
+                            dot << "px |<d>\" ]" << endl;
                             dot << "    nodo_" << nodo->getValor() << ":d-> nodo_" << nodo->getDerecha()->getValor()  << endl;
                             aux->push(nodo->getDerecha());
                         }
@@ -433,6 +449,32 @@ class ABB{
             }
             
             return  r;
+            
+        }
+        
+        
+        CuboOrtogonal* getCubo(string nombre){
+            
+            if(raiz != NULL){
+                
+                NodoABB* aux = raiz;
+                
+                while(aux != NULL){
+                    
+                    if(nombre.compare(aux->getValor()) == -1){
+                        aux = aux->getIzquierda();
+                    }else if(nombre.compare(aux->getValor()) == 1){
+                        aux = aux->getDerecha();
+                    }else{
+                        return aux->getImagen();
+                    }
+                
+                }
+                
+            }
+            
+            cout << "No existe esa imagen" << endl;
+            return NULL;
             
         }
         

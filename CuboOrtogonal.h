@@ -9,6 +9,7 @@
 #include "ListaDobleLineal.h"
 #include <fstream>
 #include <direct.h>
+#include <algorithm>
 
 class CuboOrtogonal {
 
@@ -16,11 +17,10 @@ class CuboOrtogonal {
         NodoZ* cabeza;
         NodoZ* cola;
         int lengthZ;
-        bool existeZ(int z);
         void agregarCabeceraZ(int z);
-        NodoZ* getNodeZ(int z);
         int width, height, pixel_height, pixel_width;
         string nombreCubo = "";
+        
         
     public:
         CuboOrtogonal(string nombre);
@@ -31,6 +31,9 @@ class CuboOrtogonal {
         NodoZ* getCabeza();
         void setDimensiones(int w, int h, int ph, int pw);
         void setNombre(string nombre);
+        
+        NodoZ* getNodeZ(int z);
+        bool existeZ(int z);
         
         int getWidth();
         int getHeight();
@@ -43,9 +46,13 @@ class CuboOrtogonal {
         
         void generarImagen();
         
+        void generarMosaico(MatrizOrtogonal* original);
+        void generarCollage();
+        
+        
         void reporteCapas();
         
-        //PRUEBA DE LOS FILTOS ------------------------
+        // FILTROS
         void filtroNegativo();
         
         void filtroEscalaGrises();
@@ -55,6 +62,13 @@ class CuboOrtogonal {
         void filtroEspejoY();
         
         void filtroDobleEspejo();
+        
+        void filtroCollage(int x, int y);
+        
+        void filtroMosaico();
+        
+        
+        CuboOrtogonal* getCopiaCubo();
         
 };
 

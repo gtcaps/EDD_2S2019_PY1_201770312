@@ -54,6 +54,7 @@ void MatrizOrtogonal::insertarCabeceraX(int x) {
                         nuevaPosX->setIzquierda(auxActual->getIzquierda());
                         auxActual->getIzquierda()->setDerecha(nuevaPosX);
                         auxActual->setIzquierda((nuevaPosX));
+                        sizeX++;
                         break;
                     }
                     auxActual = auxActual->getDerecha();
@@ -95,6 +96,7 @@ void MatrizOrtogonal::insertarCabeceraY(int y) {
                         nuevaPosY->setArriba(auxActual->getArriba());
                         auxActual->getArriba()->setAbajo(nuevaPosY);
                         auxActual->setArriba((nuevaPosY));
+                        sizeY++;
                         break;
                     }
                     auxActual = auxActual->getAbajo();
@@ -424,6 +426,8 @@ NodoOrtogonal *MatrizOrtogonal::getCabezaY(){
     return cabezaY;
 }
 
+//PRUEBA DE LOS FILTOS ------------------------
+
 void MatrizOrtogonal::filtroNegativo() {
     if(cabezaX != NULL && cabezaY != NULL){
         NodoOrtogonal* auxY = cabezaY;
@@ -433,7 +437,7 @@ void MatrizOrtogonal::filtroNegativo() {
     
             while(x != NULL){
         
-                if(x->getValor() != "x"){
+                if(x->getValor() != "x" && x->getValor() != ""){
                     size_t posComa = x->getValor().find("-");
                     int red = stoi(x->getValor().substr(0, posComa));
             
@@ -471,15 +475,19 @@ void MatrizOrtogonal::filtroEscalaGrises() {
             
             while(x != NULL){
                 
-                if(x->getValor() != "x"){
+                if(x->getValor() != "x" && x->getValor() != ""){
+                    //cout << "->"<<x->getValor()<<"<-" << endl << endl;
                     size_t posComa = x->getValor().find("-");
                     int red = stoi(x->getValor().substr(0, posComa));
+                    
                     
                     string auxG = x->getValor().substr(posComa + 1);
                     posComa = auxG.find("-");
                     int green = stoi(auxG.substr(0, posComa));
                     
+                    
                     int blue = stoi(auxG.substr(posComa + 1));
+                    
                     
                     //CALCULAR EL GRIS EQUIVALENTE
                     int gray = (0.3 * red) + (0.59 * green) + (0.11*blue);
@@ -538,5 +546,191 @@ MatrizOrtogonal *MatrizOrtogonal::filtroEspejoY(int height) {
     }
     return  NULL;
 }
+
+MatrizOrtogonal *MatrizOrtogonal::filtroCollage(int width, int height, int repX, int repY) {
+    if(cabezaX != NULL && cabezaY != NULL){
+    
+        //IMPRIMIR LAS REPETICIONES EN X
+        int contX = 0;
+        MatrizOrtogonal* collage = new MatrizOrtogonal();
+        
+        while(contX < repX ){
+            
+            NodoOrtogonal* y = cabezaY;
+            
+            while(y != NULL){
+                
+                NodoOrtogonal* x = y->getDerecha();
+                while ( x != NULL ){
+                    collage->insertar(x->getValor(), ((x->getX()) + ( contX * width)), x->getY());
+                    x = x->getDerecha();
+                }
+    
+                y = y->getAbajo();
+            }
+            //cout << contX << endl;
+            contX++;
+        }
+        
+        //IMPRIMIR LAS REPETICIONES EN Y
+        MatrizOrtogonal* collageCompleto = new MatrizOrtogonal();
+        int contY = 0;
+        while(contY < repY ){
+        
+            NodoOrtogonal* y = collage->getCabezaY();
+        
+            while(y != NULL){
+            
+                NodoOrtogonal* x = y->getDerecha();
+                while ( x != NULL ){
+                    collageCompleto->insertar(x->getValor(), x->getX(), ((x->getY()) + ( contY * (height))));
+                    x = x->getDerecha();
+                }
+            
+                y = y->getAbajo();
+            }
+        
+            contY++;
+        }
+        
+        
+        return collageCompleto;
+        
+    }
+    return  NULL;
+}
+
+MatrizOrtogonal *MatrizOrtogonal::filtroMosaico(int width, int height) {
+    return filtroCollage(width, height, width, height);
+}
+
+MatrizOrtogonal *MatrizOrtogonal::getCopiaMatriz() {
+    MatrizOrtogonal* matriz = new MatrizOrtogonal();
+    if(   cabezaX != NULL && cabezaY != NULL){
+        
+        NodoOrtogonal* y = cabezaY;
+        while(y != NULL){
+            NodoOrtogonal* x = y->getDerecha();
+            while(x != NULL){
+                matriz->insertar(x->getValor(), x->getX(), x->getY());
+                x = x->getDerecha();
+            }
+            y = y->getAbajo();
+        }
+        
+        return matriz;
+        
+    }
+    return matriz;
+}
+
+int MatrizOrtogonal::getSizeX() {
+    return sizeX;
+}
+
+int MatrizOrtogonal::getSizeY() {
+    return sizeY;
+}
+
+void MatrizOrtogonal::reporteLinealFilas() {
+    string path = "./linealizarFilas.txt";
+    
+    //ARCHIVO DOT
+    ofstream dot;
+    dot.open(path);
+    dot << "digraph filas{" << endl;
+    dot << "    rankdir=LR;" << endl;
+    dot << "    node [shape = record];" << endl;
+    dot << "    graph [ranksep=\"1\"];" << endl << endl;
+    
+    if(cabezaY == NULL || cabezaX == NULL){
+        dot << "        nodo[ label=\"vacio\" ]" << endl;
+    }else{
+        NodoOrtogonal* y = cabezaY;
+        while(y != NULL){
+            
+            NodoOrtogonal* x = y->getDerecha();
+            while(x != NULL){
+                if(x->getDerecha() == NULL){
+                    dot << "    nodo"<< x->getX() <<"_"<< x->getY() <<"[ label=\" "<< x->getValor() <<"\\n Pos[ "<< x->getX() <<"  , "<< x->getY() <<" ]   \" ];" << endl;
+                    if(y->getAbajo() != NULL){
+                        dot << "    nodo"<< y->getAbajo()->getDerecha()->getX() <<"_"<< y->getAbajo()->getDerecha()->getY() <<"[ label=\" "<< y->getAbajo()->getDerecha()->getValor() <<"\\n Pos[ "<< y->getX() <<"  , "<< y->getY() <<" ]   \" ];" << endl;
+                        dot << "    nodo"<< x->getX() <<"_"<< x->getY() << "->nodo"<< y->getAbajo()->getDerecha()->getX() <<"_"<< y->getAbajo()->getDerecha()->getY() << endl << endl << endl;
+                    }
+                }else{
+                    dot <<"    nodo"<< x->getX() <<"_"<< x->getY() <<"[ label=\" "<< x->getValor() <<"\\n Pos[ "<< x->getX() <<"  , "<< x->getY() <<" ]   \" ];" << endl;
+                    dot << "    nodo"<< x->getDerecha()->getX() <<"_"<< x->getDerecha()->getY() <<"[label=\" "<< x->getDerecha()->getValor() <<"\\n Pos[ "<< x->getDerecha()->getX() <<"  , "<< x->getDerecha()->getY() <<" ]   \" ];" << endl;
+                    dot << "    nodo"<< x->getX() <<"_"<< x->getY() << "->" << "nodo"<< x->getDerecha()->getX() <<"_"<< x->getDerecha()->getY() << ";" << endl;
+                    
+                }
+                x = x->getDerecha();
+            }
+    
+            
+            if(y->getAbajo() != NULL){
+                dot << "    { rank=same;  nodo"<<y->getDerecha()->getX() <<"_"<< y->getDerecha()->getY() <<"; nodo"<< y->getAbajo()->getDerecha()->getX() <<"_"<< y->getAbajo()->getDerecha()->getY() <<";}" << endl << endl;
+            }
+            
+            
+            
+            y = y->getAbajo();
+        }
+    }
+    
+    dot << "}" << endl;
+    dot.close();
+    system("dot -Tpng linealizarFilas.txt -o filas.png");
+    system("filas.png");
+}
+
+void MatrizOrtogonal::reporteLinealColumnas() {
+    string path = "./linealizarCols.txt";
+    
+    //ARCHIVO DOT
+    ofstream dot;
+    dot.open(path);
+    dot << "digraph filas{" << endl;
+    dot << "    rankdir=TB;" << endl;
+    dot << "    node [shape = record];" << endl;
+    dot << "    graph [ranksep=\"1\"];" << endl << endl;
+    
+    if(cabezaY == NULL || cabezaX == NULL){
+        dot << "        nodo[ label=\"vacio\" ]" << endl;
+    }else{
+        NodoOrtogonal* x = cabezaX;
+        while(x != NULL){
+            
+            NodoOrtogonal* y = x->getAbajo();
+            while(y != NULL){
+                if(y->getAbajo() == NULL){
+                    dot << "    nodo"<< y->getX() <<"_"<< y->getY() <<"[ label=\" "<< y->getValor() <<"\\n Pos[ "<< y->getX() <<"  , "<< y->getY() <<" ]   \" ];" << endl;
+                    if(x->getDerecha() != NULL){
+                        dot << "    nodo"<< x->getDerecha()->getAbajo()->getX() <<"_"<< x->getDerecha()->getAbajo()->getY() <<"[ label=\" "<< x->getDerecha()->getAbajo()->getValor() <<"\\n Pos[ "<< x->getX() <<"  , "<< x->getY() <<" ]   \" ];" << endl;
+                        dot << "    nodo"<< y->getX() <<"_"<< y->getY() << "->nodo"<< x->getDerecha()->getAbajo()->getX() <<"_"<< x->getDerecha()->getAbajo()->getY() << endl << endl << endl;
+                    }
+                }else{
+                    dot <<"    nodo"<< y->getX() <<"_"<< y->getY() <<"[ label=\" "<< y->getValor() <<"\\n Pos[ "<< y->getX() <<"  , "<< y->getY() <<" ]   \" ];" << endl;
+                    dot << "    nodo"<< y->getAbajo()->getX() <<"_"<< y->getAbajo()->getY() <<"[label=\" "<< y->getAbajo()->getValor() <<"\\n Pos[ "<< y->getAbajo()->getX() <<"  , "<< y->getAbajo()->getY() <<" ]   \" ];" << endl;
+                    dot << "    nodo"<< y->getX() <<"_"<< y->getY() << "->" << "nodo"<< y->getAbajo()->getX() <<"_"<< y->getAbajo()->getY() << ";" << endl;
+        
+                }
+                y = y->getAbajo();
+            }
+            
+            if(x->getDerecha() != NULL){
+                dot << "    {rank=same; nodo"<< x->getAbajo()->getX() <<"_"<< x->getAbajo()->getY() << "; nodo" << x->getDerecha()->getAbajo()->getX() << "_" << x->getDerecha()->getAbajo()->getY() << "; }" << endl << endl;
+            }
+            
+            
+            x = x->getDerecha();
+        }
+    }
+    
+    dot << "}" << endl;
+    dot.close();
+    system("dot -Tpng linealizarCols.txt -o cols.png");
+    system("cols.png");
+}
+
 
 

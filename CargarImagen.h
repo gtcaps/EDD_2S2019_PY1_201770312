@@ -50,7 +50,7 @@ void cargarCapa(int capa, string nombreCarpeta, string nombreArchivo, CuboOrtogo
                     }
                     linea = "";
                 }else{
-                    linea += caracter;
+                    linea += tolower(caracter);
                 }
             }
         }
@@ -131,7 +131,8 @@ class CargarImagen{
             
             
             if(archivo.fail()){
-                cout << endl << "Error al tratar de abrir " << nombreArchivo_ << ".csv" << endl;
+                cout << endl << "Error al tratar de abrir " << nombreArchivo_ << ".csv" << endl << endl;
+                cubo = new CuboOrtogonal("vacio");
             }else{
                 cout << endl << "Cargando: csv/" << nombreCarpeta_ << "/" << nombreArchivo_ <<".csv  ... " << endl;
                 try{
@@ -156,6 +157,7 @@ class CargarImagen{
                         size_t posExt = linea.find(".");
                         
                         //OBTENGO LA POSICION DE LA CAPA
+                        cout << "------" << linea.substr(0, posComa) << endl;
                         int capaZ = stoi(linea.substr(0, posComa));
                         
                         //OBTENGO EL NOMBRE DEL ARCHIVO QUE SE VA A CARGAR
@@ -172,7 +174,7 @@ class CargarImagen{
         
                     }
                     
-                    cout << endl << "Carga Completa: csv/" << nombreCarpeta_ << "/" << nombreArchivo_ <<".csv  ... " << endl;
+                    cout << endl << "Carga Completa: csv/" << nombreCarpeta_ << "/" << nombreArchivo_ <<".csv  ... " << endl << endl;
                     
                 }catch(...){
                     cout << endl << "El archivo de entrada tiene un error, reviselo y vuelvalo a abrir" << endl;

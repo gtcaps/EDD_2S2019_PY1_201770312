@@ -12,6 +12,7 @@ class NodoOrtogonal {
     
     private:
         string valor;
+        string opacityColor;
         int posX, posY;
         NodoOrtogonal *arriba, *abajo, *izquierda, *derecha;
         
@@ -24,6 +25,7 @@ class NodoOrtogonal {
         void setAbajo(NodoOrtogonal* abajo_);
         void setIzquierda(NodoOrtogonal* izquierda_);
         void setDerecha(NodoOrtogonal* derecha_);
+        void setOpacityColor(string color);
         void setX(int x);
         void setY(int y);
         
@@ -35,6 +37,7 @@ class NodoOrtogonal {
         NodoOrtogonal* getIzquierda();
         int getX();
         int getY();
+        string getOpacityColor();
 
 };
 

@@ -4,7 +4,7 @@ digraph InOrden{
         style = filled;
         color = lightgrey;
         node[style=filled, color=white] 
-        hulk -> realmadrid
+        ironman -> hulk -> hora_de_aventura -> ave -> realmadrid -> toad -> mario
         label= "Listado de imagenes En Post-Orden"
     }
 }

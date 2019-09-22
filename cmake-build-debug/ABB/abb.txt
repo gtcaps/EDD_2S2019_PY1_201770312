@@ -3,12 +3,17 @@ digraph abb{
     node [shape = record];
     graph [ranksep="1"];
 
-    nodo_realmadrid[ label="<i>|realmadrid|<d>" ]
-    nodo_hulk[ label="<i>|hulk|<d>" ]
-    nodo_realmadrid:i-> nodo_hulk
+    nodo_ironman[ label="<i>|ironman\n------------------------------- \nWidth: 32px - Height: 32\n\nPixel-W: 30px - Pixel-H: 30px |<d>" ]
+    nodo_hulk[ label="<i>|hulk\n------------------------------- \nWidth: 32px - Height: 32\n\nPixel-W: 30px - Pixel-H: 30px |<d>" ]
+    nodo_ironman:i-> nodo_hulk
+    nodo_realmadrid[ label="<i>|realmadrid\n------------------------------- \nWidth: 32px - Height: 32\n\nPixel-W: 30px - Pixel-H: 30px |<d>" ]
+    nodo_ironman:d-> nodo_realmadrid
 
 
-    nodo_hulk[ label="<i>|hulk|<d>" ]
+    nodo_hulk[ label="<i>|hulk\n------------------------------- \nWidth: 17px - Height: 25\n\nPixel-W: 20px - Pixel-H: 20px |<d>" ]
+
+
+    nodo_realmadrid[ label="<i>|realmadrid\n------------------------------- \nWidth: 29px - Height: 29\n\nPixel-W: 30px - Pixel-H: 30px |<d>" ]
 
 
 }
